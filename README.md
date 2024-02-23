@@ -59,7 +59,12 @@ Music promoted by BreakingCopyright
 
 ---
 
-### FONTS
+### Fonts
 
 https://www.dafont.com/conthrax.font
 
+### Button Icons
+
+[Play Button Icon](https://www.flaticon.com/free-icons/play-button)
+
+[Pause Button Icon](https://www.flaticon.com/free-icons/pause)
