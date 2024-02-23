@@ -2,7 +2,9 @@
 
 Classic tetris game
 
-![gameplay](docs/gameplay.gif)
+<p align="center">
+    <img src="docs/gameplay.gif" alt="image" width = 540 height = 960>
+</p>
 
 ## Controls
 
