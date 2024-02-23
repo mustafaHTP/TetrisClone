@@ -160,7 +160,7 @@ public class BlockMover : MonoBehaviour
 
     private bool GetRotationalInput()
     {
-        return Input.GetKeyDown(KeyCode.UpArrow);
+        return Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
     }
 
     private float GetHorizontalMovementInput()
