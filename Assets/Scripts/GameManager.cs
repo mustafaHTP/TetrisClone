@@ -93,8 +93,6 @@ public class GameManager : MonoBehaviour
     {
         _activeBlock.GetComponent<BlockMover>().enabled = false;
         UIManager.Instance.OpenGameOverCanvas();
-        //Time.timeScale = 0f;
-        print("GAME OVER");
     }
 
     private void Awake()

@@ -30,13 +30,11 @@ public class UIManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        _pauseCanvas.GetComponent<Transform>().localScale = Vector2.zero;
         _pauseCanvas.GetComponent<CanvasGroup>().alpha = 0f;
 
         _pauseCanvas.gameObject.SetActive(true);
 
         //I used SetUpdate() because game is stopped
-        _pauseCanvas.GetComponent<Transform>().DOScale(1f, 1f).SetUpdate(true);
         _pauseCanvas.GetComponent<CanvasGroup>().DOFade(1f, 1f).SetUpdate(true).OnComplete(() =>
         {
             _pauseCanvas.GetComponent<CanvasGroup>().interactable = true;
@@ -46,12 +44,12 @@ public class UIManager : MonoBehaviour
 
     public void ClosePauseCanvas()
     {
+        //Open only if canvas is enabled
         if (!_pauseCanvas.gameObject.activeSelf) return;
 
         _pauseCanvas.GetComponent<CanvasGroup>().interactable = false;
         _pauseCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        _pauseCanvas.GetComponent<Transform>().DOScale(0f, 1f).SetUpdate(true);
         _pauseCanvas.GetComponent<CanvasGroup>().DOFade(0f, 1f).SetUpdate(true).OnComplete(() =>
         {
             Time.timeScale = 1f;

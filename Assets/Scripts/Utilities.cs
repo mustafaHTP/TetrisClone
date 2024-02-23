@@ -10,4 +10,10 @@ public static class Utilities
     {
         public const string HighScoreKey = "HighScore";
     }
+
+    public struct AudioMixerParams
+    {
+        public const string MusicVolume = "MusicVolume";
+        public const string SFXVolume = "SFXVolume";
+    }
 }
