@@ -2,17 +2,18 @@
 
 > Classic tetris game
 
+> You can play on [itch.io](https://mustafahtp.itch.io/tetrisclone)
 <p align="center">
     <img src="docs/gameplay.gif" alt="image" width = 540 height = 960>
 </p>
 
 ## Controls
 
-Move block horizontally => Left and Right Arrows, 'A' and 'D' keys.
+**Move block horizontally =>** Left and Right Arrows, 'A' and 'D' keys, Gamepad Left Stick/Left,Right, Gamepad Dpad/Left,Right
 
-Rotate block => Up arrow, 'W' key
+**Rotate block =>** Up arrow, 'W' key, Gamepad Left Stick/Up, Gamepad Left Stick, Gamepad Dpad/Up
 
-Move block vertically => Down arrow, 'S' key
+**Move block vertically =>** Down arrow, 'S' key, Gamepad Left Stick/Down, Gamepad Dpad/Down
 
 ## Screenshots
 
