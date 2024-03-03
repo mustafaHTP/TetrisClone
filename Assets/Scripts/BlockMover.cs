@@ -9,6 +9,7 @@ public class BlockMover : MonoBehaviour
 
     public const int BlockCount = 4;
 
+    private PlayerInput _playerInput;
     private bool _isMovingHorizontal = false;
     private bool _isMovingVertical = false;
     private bool _isBlockStopped = false;
@@ -16,9 +17,14 @@ public class BlockMover : MonoBehaviour
     public Transform[] BlockPieces { get => _blockPieces; }
     public BlockType BlockType { get => _blockType; }
 
+    private void Awake()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+    }
+
     private void Start()
     {
-        StartCoroutine(MoveVerticalAutomatically());
+        StartCoroutine(MoveDownAutomatically());
     }
 
     private void Update()
@@ -26,7 +32,7 @@ public class BlockMover : MonoBehaviour
         if (_isBlockStopped) return;
 
         float horizontalInput = GetHorizontalMovementInput();
-        float verticalInput = GetVerticalMovementInput();
+        bool moveDownInput = GetMoveDownInput();
 
         if (GetRotationalInput() && _canRotate)
         {
@@ -36,9 +42,9 @@ public class BlockMover : MonoBehaviour
         {
             StartCoroutine(MoveHorizontal(horizontalInput));
         }
-        else if (verticalInput == -1f && !_isMovingVertical)
+        else if (moveDownInput && !_isMovingVertical)
         {
-            StartCoroutine(MoveVertical(verticalInput));
+            StartCoroutine(MoveDown());
         }
     }
 
@@ -79,7 +85,7 @@ public class BlockMover : MonoBehaviour
         Destroy(this);
     }
 
-    private IEnumerator MoveVerticalAutomatically()
+    private IEnumerator MoveDownAutomatically()
     {
         while (true)
         {
@@ -103,17 +109,17 @@ public class BlockMover : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveVertical(float verticalInput)
+    private IEnumerator MoveDown()
     {
         _isMovingHorizontal = true;
 
         //Calculate next position for every block piece
-        Vector3 movementAmount = Vector3.up * (verticalInput * GameManager.Instance.MovementAmountPerStep);
+        Vector3 movementAmount = Vector3.down * GameManager.Instance.MovementAmountPerStep;
         Vector2Int[] blockPieceNextPositions = GetPreviewMoveOperation(movementAmount);
 
         if (GameManager.Instance.IsBlockOnBoard(blockPieceNextPositions))
         {
-            transform.position += Vector3.up * (verticalInput * GameManager.Instance.MovementAmountPerStep);
+            transform.position += Vector3.down * GameManager.Instance.MovementAmountPerStep;
         }
 
         yield return new WaitForSeconds(GameManager.Instance.VerticalMovementDelay * GameManager.Instance.GameSpeed);
@@ -164,17 +170,17 @@ public class BlockMover : MonoBehaviour
 
     private bool GetRotationalInput()
     {
-        return Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
+        return _playerInput.FrameInput.RotateInput;
     }
 
     private float GetHorizontalMovementInput()
     {
-        return Input.GetAxisRaw("Horizontal");
+        return _playerInput.FrameInput.MoveHorizontalInput;
     }
 
-    private float GetVerticalMovementInput()
+    private bool GetMoveDownInput()
     {
-        return Input.GetAxisRaw("Vertical");
+        return _playerInput.FrameInput.MoveDownInput;
     }
 }
 

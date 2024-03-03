@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6936770189606414618}
   - component: {fileID: -2522595723073357191}
   - component: {fileID: 8126409435093199839}
+  - component: {fileID: 6184943555047143627}
   m_Layer: 0
   m_Name: S_Block
   m_TagString: Untagged
@@ -133,7 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65005d3abe846840971bb68055bc4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _move: 1
   _blockType: 4
   _canRotate: 1
   _blockPieces:
@@ -153,6 +153,18 @@ SortingGroup:
   m_SortingLayer: 2
   m_SortingOrder: 2
   m_SortAtRoot: 0
+--- !u!114 &6184943555047143627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291854875770818886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd6bf97746d35c429d3f970d5e81c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5606814831857359804
 GameObject:
   m_ObjectHideFlags: 0
