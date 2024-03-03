@@ -66,6 +66,10 @@ public class BlockMover : MonoBehaviour
         {
             transform.Rotate(Vector3.forward, -1f * GameManager.RotationAngle);
         }
+        else
+        {
+            SoundManager.Instance.PlayBlockRotation();
+        }
     }
 
     private void OnBlockStop()
@@ -128,7 +132,7 @@ public class BlockMover : MonoBehaviour
         if (GameManager.Instance.IsBlockOnBoard(blockPieceNextPositions))
         {
             transform.position += Vector3.right * (horizontalInput * GameManager.Instance.MovementAmountPerStep);
-            SoundManager.Instance.PlayBlockHorizontalMove();
+            SoundManager.Instance.PlayBlockHorizontalMovement();
         }
         else
         {

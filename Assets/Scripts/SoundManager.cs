@@ -8,8 +8,9 @@ public class SoundManager : MonoBehaviour
 
     [Header("SFX")]
     [Space(5)]
-    [SerializeField] private AudioSource _blockHorizontalMoveAS;
-    [SerializeField] private AudioSource _blockMoveErrorClipAS;
+    [SerializeField] private AudioSource _blockHorizontalMovementAS;
+    [SerializeField] private AudioSource _blockRotationAS;
+    [SerializeField] private AudioSource _blockMovementErrorClipAS;
     [SerializeField] private AudioSource _blockLandSuccessAS;
     [SerializeField] private AudioSource _rowCleaningAS;
 
@@ -19,19 +20,27 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource _currentBackgroundMusicAS;
 
-    public void PlayBlockHorizontalMove()
+    public void PlayBlockHorizontalMovement()
     {
-        if (!_blockHorizontalMoveAS.isPlaying)
+        if (!_blockHorizontalMovementAS.isPlaying)
         {
-            _blockHorizontalMoveAS.Play();
+            _blockHorizontalMovementAS.Play();
+        }
+    }
+
+    public void PlayBlockRotation()
+    {
+        if (!_blockRotationAS.isPlaying)
+        {
+            _blockRotationAS.Play();
         }
     }
 
     public void PlayBlockMoveError()
     {
-        if (!_blockMoveErrorClipAS.isPlaying)
+        if (!_blockMovementErrorClipAS.isPlaying)
         {
-            _blockMoveErrorClipAS.Play();
+            _blockMovementErrorClipAS.Play();
         }
     }
 
