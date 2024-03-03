@@ -9,55 +9,49 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _pauseButton;
 
-    private bool _isTogglingCanvas = false;
-
     public void OpenPauseCanvas()
     {
-        if (!_isTogglingCanvas)
-        {
-            StartCoroutine(OpenPauseCanvasCoroutine());
-        }
+        UIManager.Instance.OpenPauseCanvas();
+        _pauseButton.gameObject.SetActive(false);
+        _pauseButton.interactable = false;
+        _playButton.gameObject.SetActive(true);
     }
 
     public void ClosePauseCanvas()
     {
-        if (!_isTogglingCanvas)
-        {
-            StartCoroutine(ClosePauseCanvasCoroutine());
-        }
-    }
-
-    private IEnumerator ClosePauseCanvasCoroutine()
-    {
-        _isTogglingCanvas = true;
-
         UIManager.Instance.ClosePauseCanvas();
         _pauseButton.gameObject.SetActive(true);
         _playButton.gameObject.SetActive(false);
-
-        yield return null;
-
-        _isTogglingCanvas = false;
+        _playButton.interactable = false;
     }
 
-    private IEnumerator OpenPauseCanvasCoroutine()
+    private void MakePlayButtonInteractable()
     {
-        _isTogglingCanvas = true;
-
-        UIManager.Instance.OpenPauseCanvas();
-        _pauseButton.gameObject.SetActive(false);
-        _playButton.gameObject.SetActive(true);
-
-        yield return null;
-
-        _isTogglingCanvas = false;
+        _playButton.interactable = true;
     }
 
-
+    private void MakePauseButtonInteractable()
+    {
+        _pauseButton.interactable = true;
+    }
 
     private void Awake()
     {
         _playButton.gameObject.SetActive(false);
+        _playButton.interactable = false;
         _pauseButton.gameObject.SetActive(true);
+        _pauseButton.interactable = true;
+    }
+
+    private void OnEnable()
+    {
+        UIManager.OnOpenPauseCanvas += MakePlayButtonInteractable;
+        UIManager.OnClosePauseCanvas += MakePauseButtonInteractable;
+    }
+
+    private void OnDisable()
+    {
+        UIManager.OnOpenPauseCanvas -= MakePlayButtonInteractable;   
+        UIManager.OnClosePauseCanvas -= MakePauseButtonInteractable;
     }
 }

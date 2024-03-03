@@ -1,9 +1,12 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+    public static event Action OnOpenPauseCanvas;
+    public static event Action OnClosePauseCanvas;
 
     [SerializeField] private Canvas _gameOverCanvas;
     [SerializeField] private Canvas _pauseCanvas;
@@ -34,11 +37,12 @@ public class UIManager : MonoBehaviour
 
         _pauseCanvas.gameObject.SetActive(true);
 
-        //I used SetUpdate() because game is stopped
+        //SetUpdate() is used because game is stopped
         _pauseCanvas.GetComponent<CanvasGroup>().DOFade(1f, 1f).SetUpdate(true).OnComplete(() =>
         {
             _pauseCanvas.GetComponent<CanvasGroup>().interactable = true;
             _pauseCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            OnOpenPauseCanvas?.Invoke();
         });
     }
 
@@ -54,6 +58,7 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 1f;
             _pauseCanvas.gameObject.SetActive(false);
+            OnClosePauseCanvas?.Invoke();
         });
     }
 
