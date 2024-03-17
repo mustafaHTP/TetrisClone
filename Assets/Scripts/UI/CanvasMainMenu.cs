@@ -14,9 +14,10 @@ public class CanvasMainMenu : MonoBehaviour
 
     [Header("Menus Config")]
     [Space(5)]
-    [SerializeField] private float _menuTransitionPositionOffset;
     [SerializeField] private RectTransform _mainMenu;
     [SerializeField] private RectTransform _optionsMenu;
+
+    private float _menuTransitionPositionOffset;
 
     public void PlayGame()
     {
@@ -56,6 +57,8 @@ public class CanvasMainMenu : MonoBehaviour
 
     private void InitializeOptionsMenu()
     {
+        _menuTransitionPositionOffset = Screen.width;
+
         //Set position
         _optionsMenu.localPosition += Vector3.right * _menuTransitionPositionOffset;
 
